@@ -45,6 +45,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
+  config.active_job.queue_adapter = :sidekiq
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "railsapp_#{Rails.env}"
   config.action_mailer.perform_caching = false
@@ -75,4 +76,27 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
+  config.log_formatter = ::Logger::Formatter.new
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[Error ExceptionNotifier] ",
+      :sender_address => %{"Notifier" <Notifier@rails-error.com>},
+      :exception_recipients => %w{EMAIL_ADDR}
+    }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => ENV['gmail_addr'],
+    :password             => ENV['gmail_passwd'],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+
 end

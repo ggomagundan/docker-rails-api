@@ -18,14 +18,17 @@ Build and run API app on the new environment using docker & docker compose
 ## Run this application on local
 
 ```
-git clone git clone https://github.com/ec-codecasts/e5-deploy-with-docker-rails-api-single-node.git
-cd e5-deploy-with-docker-rails-api-single-node
+git clone https://github.com/ggomagundan/docker-rails-api.git
+cd docker-rails-api
+cp docker-compose.yml.sample docker-compose.yml
 # edit docker-compose.yml to set the mysql & rails ports to be mapped on host
+cp .env.sample .env
+# edit ENV variables
 docker-compose build
 bin/d_rails db:migrate
 bin/d_rails db:seed
 # Use REST client or curl to browse the APIs
-curl http://localhost:3002/posts
+curl http://localhost:3000/posts.json
 ```
 
 ## Docker image
@@ -40,8 +43,15 @@ docker push <REGISTRY/IMAGE-URI-PATH>
 ## Deploy to single-node env
 
 ```
+cp docker-compose-staging.yml.sample docker-compose-staging.yml
 # edit docker-compose-staging.yml for the image url
 docker-compose -f docker-compose-staging.yml up
+
+# edit ENV variables
+cp .env.sample .env
+
+# modify production.rb file L84 - L86
+vi config/environments/production.rb
 
 sudo mkdir -p /docker-machines/blog-staging
 sudo chown -R $USER /docker-machines/blog-staging
@@ -68,5 +78,5 @@ docker-compose -f docker-compose-staging.yml start app
 docker-compose -f docker-compose-staging.yml logs app
 docker-compose -f docker-compose-staging.yml logs db
 
-curl http://$(docker-machine ip blog-staging):3000/posts
+curl http://$(docker-machine ip blog-staging):3000/posts.json
 ```

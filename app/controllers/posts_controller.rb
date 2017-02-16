@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    PostJob.perform_later(@post)
   end
 
   def create
