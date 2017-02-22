@@ -13,3 +13,5 @@ $redis = Redis.new(cnfg)
 # To clear out the db before each test
 $redis.flushdb if Rails.env = "test"
 =end
+
+$redis = Redis::Namespace.new("redis_namespace", redis: Redis.new(url: ENV["redis_url"], password: "redis_pwd"))

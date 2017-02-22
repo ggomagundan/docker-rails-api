@@ -10,14 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115214427) do
+ActiveRecord::Schema.define(version: 20170220091546) do
 
-  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "title"
-    t.text     "body",       limit: 65535
-    t.integer  "view_count",               default: 0
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+  create_table "market_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "market_id"
+    t.string   "tag_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "markets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string   "market_name"
+    t.string   "location"
+    t.integer  "view_count",  default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
 end

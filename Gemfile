@@ -23,13 +23,15 @@ gem 'jbuilder', '~> 2.5'
 
 #gem 'jquery-rails'
 
-gem 'turbolinks', '~> 5'
+#gem 'turbolinks', '~> 5'
 
-gem 'jquery-turbolinks'
+#gem 'jquery-turbolinks'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
 gem 'redis-rails'
 gem 'redis-objects'
+gem 'redis-namespace'
+gem 'redis-rack-cache'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -63,3 +65,7 @@ gem 'sidekiq'
 gem 'dotenv-rails'
 
 gem 'exception_notification'
+
+
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
