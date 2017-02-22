@@ -21,14 +21,14 @@ Build and run API app on the new environment using docker & docker compose
 git clone https://github.com/ggomagundan/docker-rails-api.git
 cd docker-rails-api
 cp docker-compose.yml.sample docker-compose.yml
-# edit docker-compose.yml to set the mysql & rails ports to be mapped on host
+# edit docker-compose.yml to set the mariadb, redis(password) & rails ports to be mapped on host
 cp .env.sample .env
 # edit ENV variables
 docker-compose build
 bin/d_rails db:migrate
 bin/d_rails db:seed
 # Use REST client or curl to browse the APIs
-curl http://localhost:3000/posts.json
+curl http://localhost:3000/markets.json
 ```
 
 ## Docker image
