@@ -24,6 +24,7 @@ cd e5-deploy-with-docker-rails-api-single-node
 docker-compose build
 bin/d_rails db:migrate
 bin/d_rails db:seed
+docker-compose up
 # Use REST client or curl to browse the APIs
 curl http://localhost:3002/posts
 ```
