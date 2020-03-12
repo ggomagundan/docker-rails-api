@@ -1,7 +1,7 @@
 # Note:
 # Use this as a template. DO NOT check-in staging/production 
 # configs (in docker compose) in the application code
-version: '2'
+version: '3'
 services:
   db:
     image: mysql:5.7

@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
 
-  after_action only: [:index] { set_pagination_headers :posts }
+  after_action  Proc.new{ set_pagination_headers(:posts) }, only: [:index]
 
   def index
+    puts page
+    puts per_page
     @posts = Post.page(page).per(per_page)
   end
 
